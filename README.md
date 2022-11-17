@@ -7,6 +7,7 @@ A new exported function (`Trace`) will be callable after installation. It looks 
 ```lua
 Trace( callback, tStart, tEnd, iChannel, iTraceMode, tIgnoredActors, pForceAutority )
 ```
+Only the first 3 parameters are required, all the following parameters are optionnal and have default values
 
 The function takes the same parameters as `Client.TraceLineSingle`, except for the first parameter which is the callback called once the result is received.
 The callback has only one parameter which is the result of the trace, formatted the same way as clientside (table).
