@@ -1,22 +1,29 @@
-# Installation
-Drag and drop the **server-traces** folder in your server's **Packages** folder.
-There's different ways to load the script, but the easiest would be to put **"server-traces"** in your server's **Config.toml** file, in the **packages[]** array.
-
 # Desctiption
-A new exported function (`Trace`) will be callable after installation. It looks like this:
-```lua
-Trace( callback, tStart, tEnd, iChannel, iTraceMode, tIgnoredActors, pForceAutority )
-```
-Only the first 3 parameters are required, all the following parameters are optionnal and have default values
+This will expose a new table (`SVTrace`) that works in a similar way than nanos world's `Trace` library
+List of available functions:
+- `SVTrace.BoxMulti`
+- `SVTrace.BoxSingle`
+- `SVTrace.CapsuleMulti`
+- `SVTrace.CapsuleSingle`
+- `SVTrace.LineMulti`
+- `SVTrace.LineSingle`
+- `SVTrace.SphereMulti`
+- `SVTrace.SphereSingle`
 
-The function takes the same parameters as `Client.TraceLineSingle`, except for the first parameter which is the callback called once the result is received.
+The function takes the same parameters as clientside, except for 2 last parameter which are the callback and the forced authority.
 The callback has only one parameter which is the result of the trace, formatted the same way as clientside (table).
-
-For the script to work there must be at least one player ready (who has loaded the map), the server trusts this client to retrieve the result of a trace.
+The forced authority is the player who should handle the trace (this one is optionnal)
 
 # Exemple
+
+If you want to mimic a client trace that would be
 ```lua
-Trace( function( tTrace )
-    print( NanosUtils.Dump( tTrace ) )
-end, Vector( 0, 0, 1000 ), Vector( 0, 0, -1000 ) )
+Trace.LineSingle(Vector(0, 0, 100), Vector(0, 0, -100), CollisionChannel.WorldStatic, TraceMode.ReturnEntity, {})
+```
+
+You'd just have to call it the same way on the serverside (inside the `SVTrace` table instead of `Trace`), and with a callback to handle the result (and optionnaly the player who should have the authority on it), like:
+```lua
+SVTrace.LineSingle(Vector(0, 0, 100), Vector(0, 0, -100), CollisionChannel.WorldStatic, TraceMode.ReturnEntity, {}, function(tRes)
+    print(NanosTable.Dump(tRes))
+end, Player.GetByIndex(1))
 ```
