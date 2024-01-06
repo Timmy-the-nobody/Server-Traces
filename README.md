@@ -1,6 +1,7 @@
 # Desctiption
 This will expose a new table (`SVTrace`) that works in a similar way than nanos world's `Trace` library
-List of available functions:
+
+New functions:
 - `SVTrace.BoxMulti`
 - `SVTrace.BoxSingle`
 - `SVTrace.CapsuleMulti`
