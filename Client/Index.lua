@@ -19,7 +19,7 @@ local function handleTrace(...)
     local sID = tArgs[1]
 
     local iTraceType = tArgs[2]
-    if not tTraceTypes[iTraceType] then return print("flop") end
+    if not tTraceTypes[iTraceType] then return end
 
     local tRest = {}
     for i = 3, #tArgs do

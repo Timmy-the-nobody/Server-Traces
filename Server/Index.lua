@@ -270,10 +270,4 @@ function SVTrace.SphereSingle(tStart, tEnd, fRad, iCollisionChannel, iTraceMode,
     Events.CallRemote("SVTr", pAuthority, sID, 8, tStart, tEnd, fRad, iCollisionChannel, iTraceMode, tIgnoredActors)
 end
 
--- Timer.SetTimeout(function()
---     SVTrace.LineSingle(Vector(0, 0, 100), Vector(0, 0, -100), CollisionChannel.WorldStatic, TraceMode["DrawDebug"], nil, function(tRes)
---         print(NanosTable.Dump(tRes))
---     end)
--- end, 5000)
-
 Package.Export("SVTrace", SVTrace)
