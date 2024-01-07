@@ -28,7 +28,12 @@ Trace.LineSingle(
 )
 ```
 
-You'd just have to call it the same way on the serverside (inside the `SVTrace` table instead of `Trace`), and with a callback to handle the result (and optionnaly the player who should have the authority on it), like:
+You'd just have to call it the same way on the serverside, but by using the `SVTrace` table instead of `Trace`
+
+What's changing is that `SVTrace` function have 2 extra parameter:
+- The callback to handle the result
+- The player who should have the authority on the trace query (this is optionnal, and a random player will be picked if not specified)
+
 ```lua
 SVTrace.LineSingle(
     Vector(0, 0, 100),
