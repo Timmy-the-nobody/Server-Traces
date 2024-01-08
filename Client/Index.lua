@@ -39,4 +39,4 @@ local function handleTrace(...)
     Events.CallRemote("SVTr:Pong", sID, xResultOrError)
 end
 
-Events.SubscribeRemote("SVTr", function(...) handleTrace(...) end)
+Events.SubscribeRemote("SVTr", handleTrace)
